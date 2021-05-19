@@ -9,7 +9,7 @@ const [referenceValue, setReferenceValue] = React.useState ("");
 
 function sendForm (e) {
     console.log("Naam is: " + nameValue + "\nLeeftijd is: " + ageValue + "\nReferentie: " + referenceValue + "\nComment: " + commentValue);
-    console.log("joost is de beste")
+
     e.preventDefault();
 }
 
