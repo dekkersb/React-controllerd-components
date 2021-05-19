@@ -7,13 +7,15 @@ const [ageValue, setAgeValue] = React.useState ("");
 const [commentValue, setCommentValue] = React.useState ("");
 const [referenceValue, setReferenceValue] = React.useState ("");
 
-function sendForm () {
+function sendForm (e) {
     console.log("Naam is: " + nameValue + "\nLeeftijd is: " + ageValue + "\nReferentie: " + referenceValue + "\nComment: " + commentValue);
+
+    e.preventDefault();
 }
 
   return (
       <div>
-
+          <form onSubmit={(e)=> sendForm(e)}>
     <fieldset className="gegevensContainer">
         <legend>Gegevens</legend>
         <label>Naam:
@@ -40,7 +42,6 @@ function sendForm () {
               <legend>Jouw review</legend>
               <label>Hoe heb je dit recept gevonden?</label>
 
-              <form name="form1" id="form1" action="/action_page.php">
                   <select name="reference" id="reference"
                           value = {referenceValue}
                           onChange={(e)=> setReferenceValue(e.target.value)}
@@ -50,7 +51,6 @@ function sendForm () {
                       <option value="Advertentie">Advertentie</option>
                       <option value="Anders">Anders</option>
                   </select>
-                  </form>
 
               <label>Opmerkingen:</label>
               <input
@@ -63,10 +63,10 @@ function sendForm () {
               </input>
               <button
                   type="submit"
-                  onClick={sendForm}
               >
                   Versturen</button>
           </fieldset>
+          </form>
       </div>
   );
 }
