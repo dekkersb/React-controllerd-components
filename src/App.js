@@ -2,41 +2,68 @@ import React from 'react';
 import './App.css';
 
 function App() {
+const [nameValue, setNameValue] = React.useState ("");
+const [ageValue, setAgeValue] = React.useState ("");
+const [commentValue, setCommentValue] = React.useState ("");
+const [referenceValue, setReferenceValue] = React.useState ("");
+
+function sendForm () {
+    console.log("Naam is: " + nameValue + "\nLeeftijd is: " + ageValue + "\nReferentie: " + referenceValue + "\nComment: " + commentValue);
+}
+
   return (
       <div>
 
     <fieldset className="gegevensContainer">
         <legend>Gegevens</legend>
-        <label for={"name"}>Naam:
-            <input type="text"
-            placeholder={"Wat is je naam?"}/>
+        <label>Naam:
+            <input
+                type="text"
+                name={"name"}
+                value = {nameValue}
+                onChange={(e)=> setNameValue(e.target.value)}
+            placeholder={"Wat is je naam?"}
+            />
         </label>
-        <label for={"age"}>Leeftijd:
-            <input type="number"
-            placeholder="Wat is je leeftijd?"/>
+        <label>Leeftijd:
+            <input
+                type="number"
+                name={"age"}
+                value = {ageValue}
+                onChange={(e)=> setAgeValue(e.target.value)}
+            placeholder="Wat is je leeftijd?"
+            />
         </label>
     </fieldset>
 
           <fieldset className="reviewContainer">
               <legend>Jouw review</legend>
-              <label for={"origin"}>Hoe heb je dit recept gevonden?</label>
+              <label>Hoe heb je dit recept gevonden?</label>
+
               <form name="form1" id="form1" action="/action_page.php">
-                  <select name="subject" id="subject">
-                  <option value="google" selected="selected">Google</option>
-                      <option value="friend" selected="selected">Vriend</option>
-                      <option value="advertisement" selected="selected">Advertentie</option>
-                      <option value="other" selected="selected">Anders</option>
-              </select>
+                  <select name="reference" id="reference"
+                          value = {referenceValue}
+                          onChange={(e)=> setReferenceValue(e.target.value)}
+                  >
+                  <option value="Google">Google</option>
+                      <option value="Vriend">Vriend</option>
+                      <option value="Advertentie">Advertentie</option>
+                      <option value="Anders">Anders</option>
+                  </select>
                   </form>
-              <label for={"comments"}>Opmerkingen:</label>
+
+              <label>Opmerkingen:</label>
               <input
                   type="text"
-                  name="message"
+                  name="comment"
+                  value = {commentValue}
+                  onChange={(e)=> setCommentValue(e.target.value)}
                   placeholder={"Wat vond je van het recept?"}
                   >
               </input>
               <button
                   type="submit"
+                  onClick={sendForm}
               >
                   Versturen</button>
           </fieldset>
